@@ -436,20 +436,5 @@ class Window:
         self.draw_polygon(self.original_vertices, "gray", point_color="red")
         self.draw_polygon(self.current_vertices, "purple", point_color="orchid")
 
-    def doo_sabin_subdivide(self, vertices, faces, t):
-        n = len(vertices)
-        new_vertices = []
-        for i in range(n):
-            prev = vertices[(i - 1) % n]
-            curr = vertices[i]
-            next_v = vertices[(i + 1) % n]
-            center_x = (prev[0] + curr[0] + next_v[0]) / 3
-            center_y = (prev[1] + curr[1] + next_v[1]) / 3
-            new_x = curr[0] + t * (center_x - curr[0])
-            new_y = curr[1] + t * (center_y - curr[1])
-            new_vertices.append((new_x, new_y))
-        new_faces = [tuple(range(n))]
-        return new_vertices, new_faces
-
 window = Window("Обработчик изображений")
 window.run()
